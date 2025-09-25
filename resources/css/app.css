@@ -1,0 +1,477 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efeito de partículas de fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* Header superior */
+.top-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+}
+
+.home-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.home-text i {
+    font-size: 14px;
+    color: #667eea;
+}
+
+.home-text:hover {
+    color: #667eea;
+    transform: translateX(2px);
+}
+
+.header-menu {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 20px;
+    background: rgba(102, 126, 234, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.header-menu:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: scale(1.05);
+}
+
+.menu-dot {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.header-menu:hover .menu-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+/* Container principal */
+.main-container {
+    flex: 1;
+    max-width: 420px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 140px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito de brilho no container */
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Componente de foto de usuário */
+.user-profile {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-pic-placeholder {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.profile-pic-placeholder:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 
+        0 15px 40px rgba(102, 126, 234, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.profile-icon {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 48px;
+    transition: all 0.3s ease;
+}
+
+.profile-pic-placeholder:hover .profile-icon {
+    transform: scale(1.1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.user-name {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.user-description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto;
+    font-weight: 400;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Componente de botões de ação */
+.action-buttons {
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(102, 126, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.3px;
+    animation: fadeInUp 0.8s ease-out calc(0.6s + var(--delay, 0s)) both;
+}
+
+.button:nth-child(1) { --delay: 0s; }
+.button:nth-child(2) { --delay: 0.1s; }
+.button:nth-child(3) { --delay: 0.2s; }
+.button:nth-child(4) { --delay: 0.3s; }
+.button:nth-child(5) { --delay: 0.4s; }
+
+.button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 15px 35px rgba(102, 126, 234, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.button:active {
+    transform: translateY(-1px) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+.button:last-child {
+    margin-bottom: 0;
+}
+
+.promo-button {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 15px;
+    box-shadow: 
+        0 8px 25px rgba(240, 147, 251, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.promo-button:hover {
+    background: linear-gradient(135deg, #e879f9, #f43f5e);
+    box-shadow: 
+        0 15px 35px rgba(240, 147, 251, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Efeito ripple */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Componente de ícones de redes sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease-out 1s both;
+}
+
+.social-icon {
+    color: #7a869a;
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+/* Botões personalizados */
+.custom-buttons {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.custom-button {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f) !important;
+    color: #8b4513 !important;
+    font-weight: 600 !important;
+    box-shadow: 
+        0 8px 25px rgba(252, 182, 159, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.custom-button:hover {
+    background: linear-gradient(135deg, #ffe4b5, #f4a460) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 
+        0 15px 35px rgba(252, 182, 159, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.custom-button i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .main-container {
+        margin: 10px;
+        border-radius: 20px;
+        padding: 30px 20px;
+        min-height: calc(100vh - 20px);
+    }
+    
+    .header-content {
+        padding: 0 10px;
+    }
+    
+    .profile-pic-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .user-name {
+        font-size: 24px;
+    }
+    
+    .user-description {
+        font-size: 14px;
+    }
+    
+    .button {
+        padding: 16px 20px;
+        font-size: 15px;
+        margin-bottom: 14px;
+    }
+    
+    .social-icons {
+        gap: 20px;
+    }
+    
+    .social-icon {
+        font-size: 20px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+    }
+    
+    .custom-button {
+        font-size: 14px !important;
+        padding: 14px 18px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .main-container {
+        margin: 5px;
+        padding: 25px 15px;
+    }
+    
+    .profile-pic-placeholder {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .user-name {
+        font-size: 22px;
+    }
+    
+    .button {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+}
